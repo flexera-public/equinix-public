@@ -7,6 +7,14 @@
 
 rs_utils_marker :begin
 
+service "sendmail" do
+  action :stop
+end
+
+package "sendmail" do
+  action :remove
+end
+
 # == Install and setup postfix 
 package "postfix"
 
