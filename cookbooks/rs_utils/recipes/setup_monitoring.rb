@@ -58,6 +58,14 @@ Dir.glob(packages).each do |p|
 end
   pin_version
 else
+  bash "update-epel" do
+    user "root"
+    cwd "/tmp"
+    code <<-EOF
+    sed -i -e 's/exclude=collectd/#exclude=collectd/' /etc/yum.repos.d/Epel.repo
+EOF
+end
+
   log "package installer for rhel 6 running"
   package "collectd" do 
     action :install
