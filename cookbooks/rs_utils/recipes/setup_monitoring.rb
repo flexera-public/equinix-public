@@ -56,6 +56,7 @@ Dir.glob(packages).each do |p|
     action :install
   end
 end
+  pin_version
 else
   log "package installer for rhel 6 running"
   package "collectd" do 
@@ -63,6 +64,7 @@ else
   end
 end
 # If APT, pin this package version so it can't be updated.
+def pin_version()
 remote_file "/etc/apt/preferences.d/00rightscale" do
   only_if { node[:platform] == "ubuntu" }
   source "apt.preferences.rightscale"
@@ -79,7 +81,7 @@ if node[:platform] =~ /redhat|centos/
     EOF
   end
 end
-
+end
 # Enable service on system restart
 service "collectd" do
   action :enable
