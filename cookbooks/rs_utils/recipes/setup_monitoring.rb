@@ -39,6 +39,7 @@ package "collectd" do
 end
 
 # Find and install local packages
+if ! (node[:platform] == "redhat" && node[:platform_version].to_i >= 6)
 packages = ::File.join(::File.dirname(__FILE__), "..", "files", "packages", "*#{arch}.#{type}")
 Dir.glob(packages).each do |p|
   package p do
@@ -54,7 +55,11 @@ Dir.glob(packages).each do |p|
     action :install
   end
 end
-
+else 
+  package "collectd" do 
+    action :install
+  end
+end
 # If APT, pin this package version so it can't be updated.
 remote_file "/etc/apt/preferences.d/00rightscale" do
   only_if { node[:platform] == "ubuntu" }
