@@ -27,7 +27,7 @@ rs_utils_marker :begin
 # TODO - changes if not centos (ie ubuntu)
 # TEST - currently only for centos
 #case node[:platform]
-#when "centos","fedora","suse"
+#when "centos","fedora","suse","redhat"
 
   node[:tomcat][:package_dependencies].each do |p|
     log "installing #{p}"
