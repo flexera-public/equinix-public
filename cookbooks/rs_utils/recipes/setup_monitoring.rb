@@ -40,6 +40,7 @@ end
 
 # Find and install local packages
 if ! (node[:platform] == "redhat" && node[:platform_version].to_i >= 6)
+log "installing collectd packages"
 packages = ::File.join(::File.dirname(__FILE__), "..", "files", "packages", "*#{arch}.#{type}")
 Dir.glob(packages).each do |p|
   package p do
@@ -55,7 +56,8 @@ Dir.glob(packages).each do |p|
     action :install
   end
 end
-else 
+else
+  log "package installer for rhel 6 running"
   package "collectd" do 
     action :install
   end
