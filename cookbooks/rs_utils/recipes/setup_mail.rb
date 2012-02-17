@@ -16,9 +16,9 @@ package "sendmail" do
 end
 
 # == Install and setup postfix 
-package "postfix" do
-  action :purge
-end
+#package "postfix" do
+#  action :purge
+#end
 
 package "postfix" do
   action :install
