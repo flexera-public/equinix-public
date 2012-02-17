@@ -63,10 +63,11 @@ else
     cwd "/tmp"
     code <<-EOF
     sed -i -e 's/exclude=collectd/#exclude=collectd/' /etc/yum.repos.d/Epel.repo
+    yum -y install collectd
 EOF
 end
 
-  log "package installer for rhel 6 running"
+ log "package installer for rhel 6 running"
   package "collectd" do 
     action :install
   end
