@@ -24,7 +24,7 @@ end
 arch = node[:kernel][:machine]
 arch = "i386" if arch == "i686"
 
-if node[:platform] =~ /redhat|centos/
+if node[:platform] =~ /centos/
 
   TMP_FILE = "/tmp/collectd-apache.rpm"
 
@@ -42,6 +42,16 @@ if node[:platform] =~ /redhat|centos/
     rs_utils_monitor_process "httpd.worker"
   end
  
+elsif node[:platform] == 'redhat'
+  package "collectd-apache" do
+    action :install
+  end
+  
+  if node[:web_apache][:mpm] == "prefork"
+    rs_utils_monitor_process "httpd"
+  else
+    rs_utils_monitor_process "httpd.worker"
+  end
 elsif node[:platform] == 'ubuntu'
 
   rs_utils_monitor_process 'apache2'
