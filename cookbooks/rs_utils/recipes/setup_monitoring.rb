@@ -56,7 +56,6 @@ Dir.glob(packages).each do |p|
     action :install
   end
 end
-  pin_version
 else
   bash "update-epel" do
     user "root"
@@ -73,7 +72,6 @@ end
   end
 end
 # If APT, pin this package version so it can't be updated.
-def pin_version()
 remote_file "/etc/apt/preferences.d/00rightscale" do
   only_if { node[:platform] == "ubuntu" }
   source "apt.preferences.rightscale"
@@ -89,7 +87,6 @@ if node[:platform] =~ /redhat|centos/
       echo -e "\n# Do not allow collectd version to be modified.\nexclude=collectd\n" >> #{lockfile}
     EOF
   end
-end
 end
 # Enable service on system restart
 service "collectd" do
