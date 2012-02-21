@@ -42,7 +42,7 @@ if arch == "x86_64"
   end
 end
 
-if node[:platform] == 'centos'
+if node[:platform] =~ /centos|redhat/
   cookbook_file "/tmp/#{connectors_source}" do
     source "#{connectors_source}"
   end
