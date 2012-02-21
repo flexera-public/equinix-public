@@ -43,7 +43,7 @@ if arch == "x86_64"
 end
 
 if node[:platform] == 'centos'
-  remote_file "/tmp/#{connectors_source}" do
+  cookbook_file "/tmp/#{connectors_source}" do
     source "#{connectors_source}"
   end
   package "httpd-devel" do
