@@ -11,9 +11,9 @@ service "sendmail" do
   action :stop
 end
 
-package "sendmail" do
-  action :remove
-end
+#package "sendmail" do
+#  action :remove
+#end
 
 # == Install and setup postfix 
 #package "postfix" do
