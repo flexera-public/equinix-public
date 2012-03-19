@@ -84,6 +84,11 @@ template "#{etc_apache}/conf.d/mod_jk.conf" do
   variables :tomcat_name => "tomcat6"
 end
 
+template "#{etc_apache}/conf.d/proxy_ajp.conf" do
+  action :create 
+  source "proxy_ajp.conf.erb"
+end
+
 log "Finished configuring mod_jk, creating the application vhost..."
 
 execute "Enable a2enmod apache module" do
