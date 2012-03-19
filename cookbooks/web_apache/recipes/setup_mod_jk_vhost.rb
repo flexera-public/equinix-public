@@ -87,7 +87,7 @@ end
 log "Finished configuring mod_jk, creating the application vhost..."
 
 execute "Enable a2enmod apache module" do
-  command "a2enmod rewrite && a2enmod deflate"
+  command "a2enmod rewrite && a2enmod deflate && a2enmod proxy"
 end
 
 if ("#{node[:tomcat][:code][:root_war]}" == "")
