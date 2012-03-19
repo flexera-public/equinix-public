@@ -64,6 +64,9 @@ bash "install_tomcat_connectors" do
     ./configure --with-apxs=/usr/sbin/apxs --quiet
     make -s
     su -c 'make install'
+    if [ -e #{etc_apache}/conf.d/README ]; then
+      rm -fr #{etc_apache}/conf.d/README
+    fi
   EOH
 end
 
