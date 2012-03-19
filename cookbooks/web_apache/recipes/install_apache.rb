@@ -45,6 +45,13 @@ ruby 'move_apache_logs' do
   EOH
 end
 
+bash "fix-a2enmod" do 
+  user "root"
+  code <<-EOF
+  sed -i -e 's/&&/-a/' /usr/sbin/a2enmod
+EOF
+end
+
 # Configuring Apache Multi-Processing Module
 case node[:platform]
   when "centos","redhat","fedora","suse"
