@@ -52,6 +52,13 @@ if node[:platform] =~ /centos|redhat/
   end
 end
 
+%w{ proxy_ajp auth_pam authz_ldap webalizer ssl welcome }.each do |f|
+  file "#{node[:apache][:dir]}/conf.d/#{f}.conf" do
+    action :delete
+    backup false
+  end
+end
+
 bash "install_tomcat_connectors" do
   flags "-ex"
   code <<-EOH
