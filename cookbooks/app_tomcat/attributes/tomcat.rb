@@ -33,8 +33,6 @@ when "centos","fedora","suse","redhat"
   else
     set[:tomcat][:package_dependencies] = ["ecj",\
                                            "tomcat6",\
-                                           "tomcat6-admin-webapps",\
-                                           "tomcat6-webapps",\
                                            "tomcat-native",\
                                            "mysql-connector-java"]
   end
