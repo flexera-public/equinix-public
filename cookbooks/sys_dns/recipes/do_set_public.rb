@@ -6,6 +6,7 @@
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
 rs_utils_marker :begin
+include_recipe "sys_dns::default"
 
 sys_dns "default" do
   id node[:sys_dns][:id]
